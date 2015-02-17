@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04691E801A928FA1001E84A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04691E701A928FA1001E84A4 /* AppDelegate.m */; };
-		04691E811A928FA1001E84A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04691E731A928FA1001E84A4 /* ViewController.m */; };
+		04691E801A928FA1001E84A4 /* WAEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04691E701A928FA1001E84A4 /* WAEAppDelegate.m */; };
+		04691E811A928FA1001E84A4 /* WAERootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04691E731A928FA1001E84A4 /* WAERootViewController.m */; };
 		04691E831A928FA1001E84A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04691E791A928FA1001E84A4 /* main.m */; };
 		04691E841A928FA1001E84A4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04691E7B1A928FA1001E84A4 /* LaunchScreen.xib */; };
 		04691E851A928FA1001E84A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04691E7D1A928FA1001E84A4 /* Main.storyboard */; };
 		04691E861A928FA1001E84A4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04691E7F1A928FA1001E84A4 /* Images.xcassets */; };
 		04691E8B1A928FB5001E84A4 /* WeatherAppExerciseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04691E891A928FB5001E84A4 /* WeatherAppExerciseTests.m */; };
+		04BFF8A41A92ADF300022B4A /* WAEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF8A31A92ADF300022B4A /* WAEConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,10 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04691E6F1A928FA1001E84A4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		04691E701A928FA1001E84A4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		04691E721A928FA1001E84A4 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		04691E731A928FA1001E84A4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		04691E6F1A928FA1001E84A4 /* WAEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEAppDelegate.h; sourceTree = "<group>"; };
+		04691E701A928FA1001E84A4 /* WAEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEAppDelegate.m; sourceTree = "<group>"; };
+		04691E721A928FA1001E84A4 /* WAERootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAERootViewController.h; sourceTree = "<group>"; };
+		04691E731A928FA1001E84A4 /* WAERootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAERootViewController.m; sourceTree = "<group>"; };
 		04691E781A928FA1001E84A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04691E791A928FA1001E84A4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04691E7C1A928FA1001E84A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -40,6 +41,8 @@
 		04691E891A928FB5001E84A4 /* WeatherAppExerciseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherAppExerciseTests.m; sourceTree = "<group>"; };
 		0479E4CD1A928D6900A90E56 /* WeatherAppExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherAppExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0479E4E61A928D6A00A90E56 /* WeatherAppExerciseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppExerciseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04BFF8A21A92ADF300022B4A /* WAEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEConstants.h; sourceTree = "<group>"; };
+		04BFF8A31A92ADF300022B4A /* WAEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,8 @@
 				04691E741A928FA1001E84A4 /* Helpers */,
 				04691E751A928FA1001E84A4 /* Models */,
 				04691E761A928FA1001E84A4 /* Views */,
+				04BFF8A21A92ADF300022B4A /* WAEConstants.h */,
+				04BFF8A31A92ADF300022B4A /* WAEConstants.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -87,8 +92,8 @@
 		04691E6E1A928FA1001E84A4 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				04691E6F1A928FA1001E84A4 /* AppDelegate.h */,
-				04691E701A928FA1001E84A4 /* AppDelegate.m */,
+				04691E6F1A928FA1001E84A4 /* WAEAppDelegate.h */,
+				04691E701A928FA1001E84A4 /* WAEAppDelegate.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -96,8 +101,8 @@
 		04691E711A928FA1001E84A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				04691E721A928FA1001E84A4 /* ViewController.h */,
-				04691E731A928FA1001E84A4 /* ViewController.m */,
+				04691E721A928FA1001E84A4 /* WAERootViewController.h */,
+				04691E731A928FA1001E84A4 /* WAERootViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 		0479E4C51A928D6900A90E56 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = WAE;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Juan Felipe Alvarez Saldarriaga";
 				TargetAttributes = {
@@ -267,9 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04691E811A928FA1001E84A4 /* ViewController.m in Sources */,
+				04691E811A928FA1001E84A4 /* WAERootViewController.m in Sources */,
 				04691E831A928FA1001E84A4 /* main.m in Sources */,
-				04691E801A928FA1001E84A4 /* AppDelegate.m in Sources */,
+				04691E801A928FA1001E84A4 /* WAEAppDelegate.m in Sources */,
+				04BFF8A41A92ADF300022B4A /* WAEConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

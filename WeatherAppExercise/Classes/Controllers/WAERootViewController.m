@@ -71,6 +71,11 @@
 
 - (void)setCurrentLocationFromLocationManager
 {
+    // when iOS7…
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
     [self.locationManager startUpdatingLocation];
 }
 
@@ -80,7 +85,7 @@ NSInteger startUpdatingLocationTimes = 0;
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    if (startUpdatingLocationTimes < kWAEConfigTimesToRetry) {
+    if (kWAEConfigTimesToRetry < startUpdatingLocationTimes) {
         [self.locationManager stopUpdatingLocation]; return;
     }
     
@@ -88,12 +93,11 @@ NSInteger startUpdatingLocationTimes = 0;
     
     [self.locationManager stopUpdatingLocation];
     
-    NSString *title = [NSString stringWithFormat:@"Turn On Location Services To Allow \"%@\" to Determine Your Location", kWAEConfigApplicationDisplayName];
-    NSString *message = @"This will make it much easier for you to find and record stuff nearby";
-    
-    if (![CLLocationManager locationServicesEnabled]
-        || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+    if (![CLLocationManager locationServicesEnabled] ||
+        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        NSString *title = [NSString stringWithFormat:@"Turn On Location Services To Allow \"%@\" to Determine Your Location", kWAEConfigApplicationDisplayName];
+        NSString *message = @"This will make it much easier for you to find and record stuff nearby";
+        
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:NSLocalizedString(title, nil)
                               message:NSLocalizedString(message, nil)

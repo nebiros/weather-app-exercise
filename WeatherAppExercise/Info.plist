@@ -43,5 +43,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This will make it much easier for you to find and record stuff nearby.</string>
+    <key>JIMEnvironmentsTargetBuildConfigurationName</key>
+    <string>$(CONFIGURATION)</string>
 </dict>
 </plist>

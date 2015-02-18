@@ -1,0 +1,10 @@
+PODS:
+  - RequestUtils (1.1)
+
+DEPENDENCIES:
+  - RequestUtils
+
+SPEC CHECKSUMS:
+  RequestUtils: 3ea776d3ecc0370dd35cd90aef8319cdb741dae9
+
+COCOAPODS: 0.35.0

@@ -1,0 +1,3 @@
+[submodule "WeatherAppExercise/Externals/JIMEnvironments"]
+	path = WeatherAppExercise/Externals/JIMEnvironments
+	url = https://github.com/nebiros/JIMEnvironments.git

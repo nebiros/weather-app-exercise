@@ -12,6 +12,15 @@
 
 @interface WAEConstants : NSObject
 
+#pragma mark - Config
+
 extern NSInteger const kWAEConfigTimesToRetry;
+
+#pragma mark - Blocks
+
+typedef void (^WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)(NSURLRequest *request,
+                                                                            NSHTTPURLResponse *response,
+                                                                            NSData *data,
+                                                                            NSError *connectionError);
 
 @end

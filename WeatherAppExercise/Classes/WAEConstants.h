@@ -23,6 +23,17 @@ extern NSString *const kWAEFlickrApiParamApiKey;
 extern NSString *const kWAEFlickrApiParamMethod;
 extern NSString *const kWAEFlickrApiParamFormat;
 extern NSString *const kWAEFlickrApiParamNoJSONCallback;
+extern NSString *const kWAEFlickrApiMethodPhotosSearch;
+extern NSString *const kWAEFlickrApiParamText;
+extern NSString *const kWAEFlickrApiParamLat;
+extern NSString *const kWAEFlickrApiParamLon;
+extern NSString *const kWAEFlickrApiParamPerPage;
+/**
+ *  @see https://www.flickr.com/services/api/misc.urls.html
+ *
+ *  https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
+ */
+extern NSString *const kWAEFlickrApiPhotoURLFormat;
 
 #pragma mark - OpenWeatherMap
 
@@ -38,5 +49,6 @@ typedef void (^WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)(NSUR
                                                                             NSData *data,
                                                                             NSError *connectionError);
 typedef void (^WAERequestCompletionResultBlock)(BOOL succeeded, id result, NSError *error);
+typedef void (^WAERequestCompletionBlock)(BOOL succeeded, NSError *error);
 
 @end

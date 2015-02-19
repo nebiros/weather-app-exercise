@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+@import UIKit;
 
 #import "WAEConstants.h"
 
@@ -31,5 +32,9 @@
                               via:(NSString *)via
                    withParameters:(NSDictionary *)params
                          andBlock:(WAERequestCompletionResultBlock)block;
+
++ (void)getRandomPhotoDataFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block;
++ (void)getRandomPhotoURLFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block;
++ (void)getRandomPhotoFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block;
 
 @end

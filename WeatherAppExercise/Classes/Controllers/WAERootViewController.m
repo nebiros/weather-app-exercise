@@ -17,6 +17,7 @@
 
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocation *currentLocation;
+@property (nonatomic) NSDictionary *currentLocationWeatherData;
 
 @end
 
@@ -112,6 +113,35 @@
          }
          
          self.currentLocation = [[CLLocation alloc] initWithLatitude:[result[@"coord"][@"lat"] doubleValue] longitude:[result[@"coord"][@"lon"] doubleValue]];
+         self.currentLocationWeatherData = result;
+         
+         // get random image from city.
+//         [WAERequestsHelper requestFlickrApiWithFlickrMethod:kWAEFlickrApiMethodPhotosSearch
+//                                                         via:@"GET"
+//                                              withParameters:@{kWAEFlickrApiParamText: city,
+//                                                               kWAEFlickrApiParamLat: result[@"coord"][@"lat"],
+//                                                               kWAEFlickrApiParamLon: result[@"coord"][@"lon"],
+//                                                               kWAEFlickrApiParamPerPage: @10}
+//                                                    andBlock:^(BOOL succeeded, id result, NSError *error) {
+//
+//                                                    }];
+         [WAERequestsHelper getRandomPhotoFromFlickrWithParameters:@{kWAEFlickrApiParamText: city,
+                                                                     kWAEFlickrApiParamLat: result[@"coord"][@"lat"],
+                                                                     kWAEFlickrApiParamLon: result[@"coord"][@"lon"],
+                                                                     kWAEFlickrApiParamPerPage: @10}
+                                                          andBlock:
+          ^(BOOL succeeded, UIImage *result, NSError *error) {
+              if (error) {
+                  NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
+                  NSLog(@"[ERROR] - %s: %@",
+                        __PRETTY_FUNCTION__,
+                        errorMessage);
+                  
+                  return;
+              }
+              
+              
+          }];
      }];
 }
 

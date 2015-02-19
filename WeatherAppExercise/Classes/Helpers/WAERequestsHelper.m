@@ -18,11 +18,6 @@
  withParameters:(NSDictionary *)params
        andBlock:(WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)block
 {
-    NSMutableDictionary *p = [NSMutableDictionary dictionary];
-    if (params) {
-        p = [NSMutableDictionary dictionaryWithDictionary:params];
-    }
-    
     NSURLRequest *req = [NSURLRequest HTTPRequestWithURL:URL
                                                   method:[via uppercaseString]
                                               parameters:params];
@@ -109,6 +104,79 @@
         }
         
         return block(YES, json, nil);
+    }];
+}
+
++ (void)getRandomPhotoDataFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block
+{
+    [self requestFlickrApiWithFlickrMethod:kWAEFlickrApiMethodPhotosSearch
+                                       via:@"GET"
+                            withParameters:params
+                                  andBlock:
+     ^(BOOL succeeded, NSDictionary *result, NSError *error) {
+         if (error) {
+             NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
+             NSLog(@"[ERROR] - %s: %@",
+                   __PRETTY_FUNCTION__,
+                   errorMessage);
+             
+             return block(NO, nil, error);
+         }
+         
+         NSArray *photos = (NSArray *) result[@"photos"][@"photo"];
+         
+         if (photos.count > 0) {
+             NSDictionary *photoData = [NSDictionary dictionaryWithDictionary:photos[arc4random_uniform(photos.count)]];
+             return block(YES, photoData, nil);
+         }
+         
+         return block(NO, nil, nil);
+     }];
+}
+
++ (void)getRandomPhotoURLFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block
+{
+    [self getRandomPhotoDataFromFlickrWithParameters:params andBlock:^(BOOL succeeded, NSDictionary *result, NSError *error) {
+        if (error) {
+            NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
+            NSLog(@"[ERROR] - %s: %@",
+                  __PRETTY_FUNCTION__,
+                  errorMessage);
+            
+            return block(NO, nil, error);
+        }
+        
+        NSString *photoURL = [NSString stringWithFormat:kWAEFlickrApiPhotoURLFormat,
+                              [result[@"farm"] intValue],
+                              [result[@"server"] intValue],
+                              [result[@"id"] intValue],
+                              result[@"secret"]];
+        NSURL *URL = [NSURL URLWithString:photoURL];
+        
+        return block(YES, URL, nil);
+    }];
+}
+
++ (void)getRandomPhotoFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block
+{
+    [self getRandomPhotoURLFromFlickrWithParameters:params andBlock:^(BOOL succeeded, NSURL *result, NSError *error) {
+        if (error) {
+            NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
+            NSLog(@"[ERROR] - %s: %@",
+                  __PRETTY_FUNCTION__,
+                  errorMessage);
+            
+            return block(NO, nil, error);
+        }
+        
+        if (result) {
+            NSData *data = [NSData dataWithContentsOfURL:result];
+            UIImage *randomPhoto = [UIImage imageWithData:data];
+            
+            return block(YES, randomPhoto, nil);
+        }
+        
+        return block(NO, nil, nil);
     }];
 }
 

@@ -100,9 +100,19 @@
     [WAERequestsHelper requestOpenWeatherMapApiWithPath:kWAEOpenWeatherMapApiRestWeatherPath
                                                     via:@"GET"
                                          withParameters:@{kWAEOpenWeatherMapApiParamQuery: city}
-                                               andBlock:^(NSURLRequest *request, NSHTTPURLResponse *response, NSData *data, NSError *connectionError) {
-        
-    }];
+                                               andBlock:
+     ^(BOOL succeeded, NSDictionary *result, NSError *error) {
+         if (error) {
+             NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
+             NSLog(@"[ERROR] - %s: %@",
+                   __PRETTY_FUNCTION__,
+                   errorMessage);
+             
+             return;
+         }
+         
+         self.currentLocation = [[CLLocation alloc] initWithLatitude:[result[@"coord"][@"lat"] doubleValue] longitude:[result[@"coord"][@"lon"] doubleValue]];
+     }];
 }
 
 #pragma mark - CLLocationManagerDelegate

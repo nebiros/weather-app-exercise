@@ -37,5 +37,6 @@ typedef void (^WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)(NSUR
                                                                             NSHTTPURLResponse *response,
                                                                             NSData *data,
                                                                             NSError *connectionError);
+typedef void (^WAERequestCompletionResultBlock)(BOOL succeeded, id result, NSError *error);
 
 @end

@@ -20,11 +20,16 @@
 + (void)requestFlickrApiWithFlickrMethod:(NSString *)flickrMethod
                                      via:(NSString *)via
                           withParameters:(NSDictionary *)params
-                                andBlock:(WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)block;
+                                andBlock:(WAERequestCompletionResultBlock)block;
 
 + (void)requestOpenWeatherMapApiWithPath:(NSString *)path
                                      via:(NSString *)via
                           withParameters:(NSDictionary *)params
-                                andBlock:(WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)block;
+                                andBlock:(WAERequestCompletionResultBlock)block;
+
++ (void)requestAndSerializeResult:(NSURL *)URL
+                              via:(NSString *)via
+                   withParameters:(NSDictionary *)params
+                         andBlock:(WAERequestCompletionResultBlock)block;
 
 @end

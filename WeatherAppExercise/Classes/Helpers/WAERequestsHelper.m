@@ -35,7 +35,7 @@
 + (void)requestFlickrApiWithFlickrMethod:(NSString *)flickrMethod
                                      via:(NSString *)via
                           withParameters:(NSDictionary *)params
-                                andBlock:(WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)block
+                                andBlock:(WAERequestCompletionResultBlock)block
 {
     NSMutableDictionary *p = [NSMutableDictionary dictionary];
     if (params) {
@@ -49,13 +49,13 @@
     
     NSURL *URL = [NSURL URLWithString:kWAEFlickrApiRestURL];
     
-    [self request:URL via:via withParameters:p andBlock:block];
+    [self requestAndSerializeResult:URL via:via withParameters:p andBlock:block];
 }
 
 + (void)requestOpenWeatherMapApiWithPath:(NSString *)path
                                      via:(NSString *)via
                           withParameters:(NSDictionary *)params
-                                andBlock:(WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)block
+                                andBlock:(WAERequestCompletionResultBlock)block
 {
     NSMutableDictionary *p = [NSMutableDictionary dictionary];
     if (params) {
@@ -67,7 +67,49 @@
     NSString *URLAsString = [NSString stringWithFormat:@"%@%@", kWAEOpenWeatherMapApiRestURL, path];
     NSURL *URL = [NSURL URLWithString:URLAsString];
     
-    [self request:URL via:via withParameters:p andBlock:block];
+    [self requestAndSerializeResult:URL via:via withParameters:p andBlock:block];
+}
+
++ (void)requestAndSerializeResult:(NSURL *)URL
+                              via:(NSString *)via
+                   withParameters:(NSDictionary *)params
+                         andBlock:(WAERequestCompletionResultBlock)block
+{
+    [self request:URL via:via withParameters:params andBlock:^(NSURLRequest *request, NSHTTPURLResponse *response, NSData *data, NSError *connectionError) {
+        if (connectionError && !data) {
+            NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [connectionError localizedDescription], connectionError.userInfo];
+            NSLog(@"[ERROR] - %s: %@",
+                  __PRETTY_FUNCTION__,
+                  errorMessage);
+            
+            return block(NO, nil, connectionError);
+        }
+        
+        NSError *error;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        
+        if (error) {
+            NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
+            NSLog(@"[ERROR] - %s: %@",
+                  __PRETTY_FUNCTION__,
+                  errorMessage);
+            
+            return block(NO, nil, error);
+        }
+        
+        if (response.statusCode != 200) {
+            NSError *e = [NSError
+                          errorWithDomain:@"im.juan.WeatherAppExercise"
+                          code:response.statusCode
+                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(json[@"message"], nil),
+                                     @"responseStatusCode": @(response.statusCode),
+                                     @"responseCode": json[@"code"],
+                                     @"responseMessage": json[@"message"]}];
+            return block(NO, nil, e);
+        }
+        
+        return block(YES, json, nil);
+    }];
 }
 
 @end

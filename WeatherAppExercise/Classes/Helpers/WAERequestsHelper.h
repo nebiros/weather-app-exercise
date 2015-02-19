@@ -13,8 +13,18 @@
 @interface WAERequestsHelper : NSObject
 
 + (void)request:(NSURL *)URL
-     withMethod:(NSString *)method
-     parameters:(NSDictionary *)params
+            via:(NSString *)via
+ withParameters:(NSDictionary *)params
        andBlock:(WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)block;
+
++ (void)requestFlickrApiWithFlickrMethod:(NSString *)flickrMethod
+                                     via:(NSString *)via
+                          withParameters:(NSDictionary *)params
+                                andBlock:(WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)block;
+
++ (void)requestOpenWeatherMapApiWithPath:(NSString *)path
+                                     via:(NSString *)via
+                          withParameters:(NSDictionary *)params
+                                andBlock:(WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)block;
 
 @end

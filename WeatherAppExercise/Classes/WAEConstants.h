@@ -16,6 +16,21 @@
 
 extern NSInteger const kWAEConfigTimesToRetry;
 
+#pragma mark - Flickr
+
+extern NSString *const kWAEFlickrApiRestURL;
+extern NSString *const kWAEFlickrApiParamApiKey;
+extern NSString *const kWAEFlickrApiParamMethod;
+extern NSString *const kWAEFlickrApiParamFormat;
+extern NSString *const kWAEFlickrApiParamNoJSONCallback;
+
+#pragma mark - OpenWeatherMap
+
+extern NSString *const kWAEOpenWeatherMapApiRestURL;
+extern NSString *const kWAEOpenWeatherMapApiRestWeatherPath;
+extern NSString *const kWAEOpenWeatherMapApiParamQuery;
+extern NSString *const kWAEOpenWeatherMapApiParamApiKey;
+
 #pragma mark - Blocks
 
 typedef void (^WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)(NSURLRequest *request,

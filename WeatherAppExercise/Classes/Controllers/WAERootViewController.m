@@ -8,7 +8,10 @@
 
 #import "WAERootViewController.h"
 
+#import "JIMEnvironments.h"
+
 #import "WAEConstants.h"
+#import "WAERequestsHelper.h"
 
 @interface WAERootViewController ()
 
@@ -34,6 +37,8 @@
 {
     [super viewDidLoad];
     
+    [self addObserver:self forKeyPath:NSStringFromSelector(@selector(currentLocation)) options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    
     [self setupNavigation];
     [self setCurrentLocationFromLocationManager];
 }
@@ -41,6 +46,13 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:NSStringFromSelector(@selector(currentLocation))]) {
+        
+    }
 }
 
 #pragma mark - UI
@@ -71,12 +83,26 @@
 
 - (void)setCurrentLocationFromLocationManager
 {
+#ifdef TARGET_IPHONE_SIMULATOR
+    [self findWeatherByCityName:[JIMEnvironments sharedInstance].environment[@"OpenWeatherMapDefaultQueryCity"]];
+#else
     // when iOS7…
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.locationManager requestWhenInUseAuthorization];
     }
     
     [self.locationManager startUpdatingLocation];
+#endif
+}
+
+- (void)findWeatherByCityName:(NSString *)city
+{
+    [WAERequestsHelper requestOpenWeatherMapApiWithPath:kWAEOpenWeatherMapApiRestWeatherPath
+                                                    via:@"GET"
+                                         withParameters:@{kWAEOpenWeatherMapApiParamQuery: city}
+                                               andBlock:^(NSURLRequest *request, NSHTTPURLResponse *response, NSData *data, NSError *connectionError) {
+        
+    }];
 }
 
 #pragma mark - CLLocationManagerDelegate

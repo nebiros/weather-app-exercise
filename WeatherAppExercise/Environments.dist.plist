@@ -8,12 +8,20 @@
         <string></string>
         <key>FlickrApiSecret</key>
         <string></string>
+        <key>OpenWeatherMapApiKey</key>
+        <string></string>
+        <key>OpenWeatherMapDefaultQueryCity</key>
+        <string></string>
     </dict>
 	<key>Release</key>
     <dict>
         <key>FlickrApiKey</key>
         <string></string>
         <key>FlickrApiSecret</key>
+        <string></string>
+        <key>OpenWeatherMapApiKey</key>
+        <string></string>
+        <key>OpenWeatherMapDefaultQueryCity</key>
         <string></string>
     </dict>
 </dict>

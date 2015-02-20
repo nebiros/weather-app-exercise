@@ -18,6 +18,10 @@
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocation *currentLocation;
 @property (nonatomic) NSDictionary *currentLocationWeatherData;
+@property (weak, nonatomic) IBOutlet UIImageView *cityImageView;
+@property (nonatomic) UIVisualEffectView *blurredBackgroundImageView;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
 
 @end
 
@@ -56,6 +60,13 @@
     }
 }
 
+//- (void)viewWillLayoutSubviews
+//{
+//    [super viewWillLayoutSubviews];
+//    
+//    self.blurredBackgroundImageView.frame = self.view.bounds;
+//}
+
 #pragma mark - UI
 
 - (void)setupNavigation
@@ -68,6 +79,14 @@
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(citiesButtonTapped:)];
+}
+
+- (void)createCityImageVisualEffects
+{
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    self.blurredBackgroundImageView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    self.blurredBackgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view insertSubview:self.blurredBackgroundImageView aboveSubview:self.cityImageView];
 }
 
 #pragma mark - Callbacks
@@ -115,20 +134,23 @@
          self.currentLocation = [[CLLocation alloc] initWithLatitude:[result[@"coord"][@"lat"] doubleValue] longitude:[result[@"coord"][@"lon"] doubleValue]];
          self.currentLocationWeatherData = result;
          
+         NSCalendar *calendar = [NSCalendar currentCalendar];
+         NSDate *date = [NSDate date];
+         
+         NSDateComponents *components = [[NSDateComponents alloc] init];
+         [components setWeekOfYear:-2];
+         
+         NSDate *twoWeeksBack = [calendar dateByAddingComponents:components toDate:date options:0];
+         NSString *twoWeeksBackTimestamp = [NSString stringWithFormat:@"%0.0f", [twoWeeksBack timeIntervalSince1970]];
+         
          // get random image from city.
-//         [WAERequestsHelper requestFlickrApiWithFlickrMethod:kWAEFlickrApiMethodPhotosSearch
-//                                                         via:@"GET"
-//                                              withParameters:@{kWAEFlickrApiParamText: city,
-//                                                               kWAEFlickrApiParamLat: result[@"coord"][@"lat"],
-//                                                               kWAEFlickrApiParamLon: result[@"coord"][@"lon"],
-//                                                               kWAEFlickrApiParamPerPage: @10}
-//                                                    andBlock:^(BOOL succeeded, id result, NSError *error) {
-//
-//                                                    }];
          [WAERequestsHelper getRandomPhotoFromFlickrWithParameters:@{kWAEFlickrApiParamText: city,
                                                                      kWAEFlickrApiParamLat: result[@"coord"][@"lat"],
                                                                      kWAEFlickrApiParamLon: result[@"coord"][@"lon"],
-                                                                     kWAEFlickrApiParamPerPage: @10}
+                                                                     kWAEFlickrApiParamPerPage: @10,
+                                                                     kWAEFlickrApiParamMinUploadDate: twoWeeksBackTimestamp,
+                                                                     kWAEFlickrApiParamSort: @"date-posted-desc",
+                                                                     kWAEFlickrApiParamContentType: @4}
                                                           andBlock:
           ^(BOOL succeeded, UIImage *result, NSError *error) {
               if (error) {
@@ -140,7 +162,12 @@
                   return;
               }
               
-              
+              if (result) {
+                  self.cityImageView.contentMode = UIViewContentModeScaleAspectFill;
+                  self.cityImageView.image = result;
+                  
+//                  [self createCityImageVisualEffects];
+              }
           }];
      }];
 }

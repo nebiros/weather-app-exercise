@@ -34,6 +34,10 @@ extern NSString *const kWAEFlickrApiParamPerPage;
  *  https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
  */
 extern NSString *const kWAEFlickrApiPhotoURLFormat;
+extern NSString *const kWAEFlickrApiParamMinUploadDate;
+extern NSString *const kWAEFlickrApiParamSort;
+extern NSString *const kWAEFlickrApiParamContentType;
+extern NSString *const kWAEFlickrApiParamApiSig;
 
 #pragma mark - OpenWeatherMap
 

@@ -26,7 +26,11 @@ NSString *const kWAEFlickrApiParamText = @"text";
 NSString *const kWAEFlickrApiParamLat = @"lat";
 NSString *const kWAEFlickrApiParamLon = @"lon";
 NSString *const kWAEFlickrApiParamPerPage = @"per_page";
-NSString *const kWAEFlickrApiPhotoURLFormat = @"https://farm%d.staticflickr.com/%d/%d_%@_z.jpg";
+NSString *const kWAEFlickrApiPhotoURLFormat = @"https://farm%@.staticflickr.com/%@/%@_%@_z.jpg";
+NSString *const kWAEFlickrApiParamMinUploadDate = @"min_upload_date";
+NSString *const kWAEFlickrApiParamSort = @"sort";
+NSString *const kWAEFlickrApiParamContentType = @"content_type";
+NSString *const kWAEFlickrApiParamApiSig = @"api_sig";
 
 #pragma mark - OpenWeatherMap
 

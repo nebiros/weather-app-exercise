@@ -19,6 +19,9 @@
 		04B14DB31A9441D300781B95 /* JIMEnvironments.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B14DB11A9441D300781B95 /* JIMEnvironments.m */; };
 		04B14DB61A9442A200781B95 /* Environments.dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04B14DB41A9442A200781B95 /* Environments.dist.plist */; };
 		04B14DB71A9442A200781B95 /* Environments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04B14DB51A9442A200781B95 /* Environments.plist */; };
+		04B19F421A96BFC4008572E5 /* NSString+JIMNSStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B19F411A96BFC4008572E5 /* NSString+JIMNSStringUtilities.m */; };
+		04B19F441A96CE0A008572E5 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B19F431A96CE0A008572E5 /* Reveal.framework */; };
+		04B19F461A96CE80008572E5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B19F451A96CE80008572E5 /* libz.dylib */; };
 		04BFF8A41A92ADF300022B4A /* WAEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF8A31A92ADF300022B4A /* WAEConstants.m */; };
 		73472E488CF473937F3D6674 /* libPods-WeatherAppExercise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD5556B226745DC8712FC8E /* libPods-WeatherAppExercise.a */; };
 /* End PBXBuildFile section */
@@ -54,6 +57,10 @@
 		04B14DB11A9441D300781B95 /* JIMEnvironments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JIMEnvironments.m; sourceTree = "<group>"; };
 		04B14DB41A9442A200781B95 /* Environments.dist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Environments.dist.plist; sourceTree = "<group>"; };
 		04B14DB51A9442A200781B95 /* Environments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Environments.plist; sourceTree = "<group>"; };
+		04B19F401A96BFC4008572E5 /* NSString+JIMNSStringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JIMNSStringUtilities.h"; sourceTree = "<group>"; };
+		04B19F411A96BFC4008572E5 /* NSString+JIMNSStringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JIMNSStringUtilities.m"; sourceTree = "<group>"; };
+		04B19F431A96CE0A008572E5 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		04B19F451A96CE80008572E5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		04BFF8A21A92ADF300022B4A /* WAEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEConstants.h; sourceTree = "<group>"; };
 		04BFF8A31A92ADF300022B4A /* WAEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEConstants.m; sourceTree = "<group>"; };
 		1BD5556B226745DC8712FC8E /* libPods-WeatherAppExercise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherAppExercise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B19F461A96CE80008572E5 /* libz.dylib in Frameworks */,
+				04B19F441A96CE0A008572E5 /* Reveal.framework in Frameworks */,
 				044D64B61A93F40C00EB57C2 /* MapKit.framework in Frameworks */,
 				73472E488CF473937F3D6674 /* libPods-WeatherAppExercise.a in Frameworks */,
 			);
@@ -84,6 +93,7 @@
 		044D64B71A93FB7E00EB57C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04B19F451A96CE80008572E5 /* libz.dylib */,
 				044D64B51A93F40C00EB57C2 /* MapKit.framework */,
 				1BD5556B226745DC8712FC8E /* libPods-WeatherAppExercise.a */,
 			);
@@ -162,6 +172,8 @@
 		04691E771A928FA1001E84A4 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				04B19F431A96CE0A008572E5 /* Reveal.framework */,
+				04B19F3F1A96BFC4008572E5 /* NSString+JIMNSStringUtilities */,
 				04B14DAE1A9441D300781B95 /* JIMEnvironments */,
 			);
 			path = Externals;
@@ -214,6 +226,16 @@
 			);
 			name = JIMEnvironments;
 			path = JIMEnvironments/JIMEnvironments;
+			sourceTree = "<group>";
+		};
+		04B19F3F1A96BFC4008572E5 /* NSString+JIMNSStringUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				04B19F401A96BFC4008572E5 /* NSString+JIMNSStringUtilities.h */,
+				04B19F411A96BFC4008572E5 /* NSString+JIMNSStringUtilities.m */,
+			);
+			name = "NSString+JIMNSStringUtilities";
+			path = "ios-externals/NSString+JIMNSStringUtilities";
 			sourceTree = "<group>";
 		};
 		975ACC69A3CB034586CA5437 /* Pods */ = {
@@ -373,6 +395,7 @@
 				04691E831A928FA1001E84A4 /* main.m in Sources */,
 				04B14DAD1A94390500781B95 /* WAERequestsHelper.m in Sources */,
 				04691E801A928FA1001E84A4 /* WAEAppDelegate.m in Sources */,
+				04B19F421A96BFC4008572E5 /* NSString+JIMNSStringUtilities.m in Sources */,
 				04BFF8A41A92ADF300022B4A /* WAEConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +521,10 @@
 			baseConfigurationReference = 7D652935FB148A1EFABFABA9 /* Pods-WeatherAppExercise.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WeatherAppExercise/Externals",
+				);
 				INFOPLIST_FILE = WeatherAppExercise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -509,6 +536,10 @@
 			baseConfigurationReference = BAC2C91F3B2156603D870556 /* Pods-WeatherAppExercise.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WeatherAppExercise/Externals",
+				);
 				INFOPLIST_FILE = WeatherAppExercise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

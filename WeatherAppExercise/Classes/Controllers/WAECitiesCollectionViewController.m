@@ -10,6 +10,7 @@
 
 #import "WAERequestsHelper.h"
 #import "WAECityCollectionViewCell.h"
+#import "WAERootViewController.h"
 
 @interface WAECitiesCollectionViewController ()
 
@@ -30,6 +31,18 @@
 #endif
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     layout.estimatedItemSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 250.f);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kWAEStoryboardSegueCityTappedToRoot]) {
+        WAECityCollectionViewCell *cell = (WAECityCollectionViewCell *) sender;
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        NSDictionary *city = self.cities[indexPath.row];
+        
+        WAERootViewController *rootVC = (WAERootViewController *) segue.destinationViewController;
+        rootVC.query = [[NSString stringWithFormat:@"%@, %@", city[@"city"], city[@"country"]] lowercaseString];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource

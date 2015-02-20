@@ -19,7 +19,7 @@
 @property (nonatomic) CLLocation *currentLocation;
 @property (nonatomic) NSDictionary *currentLocationWeatherData;
 @property (weak, nonatomic) IBOutlet UIImageView *cityImageView;
-@property (nonatomic) UIVisualEffectView *blurredBackgroundImageView;
+//@property (nonatomic) UIVisualEffectView *blurredBackgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
 
@@ -43,7 +43,7 @@
     [super viewDidLoad];
     
     [self addObserver:self
-           forKeyPath:NSStringFromSelector(@selector(currentLocation))
+           forKeyPath:NSStringFromSelector(@selector(query))
               options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
               context:nil];
     [self addObserver:self
@@ -70,23 +70,23 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:NSStringFromSelector(@selector(currentLocation))]) {
-        
+    if ([keyPath isEqualToString:NSStringFromSelector(@selector(query))]) {
+        [self findWeatherByQuery:self.query];
     } else if ([keyPath isEqualToString:NSStringFromSelector(@selector(currentLocationWeatherData))]) {
         self.cityLabel.text = [NSString stringWithFormat:@"%@, %@", self.currentLocationWeatherData[@"name"], self.currentLocationWeatherData[@"sys"][@"country"]];
         self.weatherLabel.text = [NSString stringWithFormat:@"%dºC", [self.currentLocationWeatherData[@"main"][@"temp"] intValue]];
     }
 }
-
-//- (void)viewWillLayoutSubviews
-//{
-//    [super viewWillLayoutSubviews];
-//    
-//    self.blurredBackgroundImageView.frame = self.view.bounds;
-//}
-
+/*
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    self.blurredBackgroundImageView.frame = self.view.bounds;
+}
+*/
 #pragma mark - UI
-
+/*
 - (void)setupNavigation
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Setttings", nil)
@@ -98,7 +98,8 @@
                                                                              target:self
                                                                              action:@selector(citiesButtonTapped:)];
 }
-
+*/
+/*
 - (void)createCityImageVisualEffects
 {
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -106,9 +107,9 @@
     self.blurredBackgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view insertSubview:self.blurredBackgroundImageView aboveSubview:self.cityImageView];
 }
-
+*/
 #pragma mark - Callbacks
-
+/*
 - (void)settingsButtonTapped:(id)sender
 {
 }
@@ -116,14 +117,12 @@
 - (void)citiesButtonTapped:(id)sender
 {
 }
-
+*/
 #pragma mark - Location
 
 - (void)setCurrentLocationFromLocationManager
 {
-#ifdef TARGET_IPHONE_SIMULATOR
-    [self findWeatherByCityName:[JIMEnvironments sharedInstance].environment[@"OpenWeatherMapDefaultQueryCity"]];
-#else
+#ifndef TARGET_IPHONE_SIMULATOR
     // when iOS7…
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.locationManager requestWhenInUseAuthorization];
@@ -131,13 +130,20 @@
     
     [self.locationManager startUpdatingLocation];
 #endif
+    
+    NSString *query = [JIMEnvironments sharedInstance].environment[@"OpenWeatherMapDefaultQueryCity"];
+    if (self.query && self.query.length > 0) {
+        query = self.query;
+    }
+    
+    [self findWeatherByQuery:query];
 }
 
-- (void)findWeatherByCityName:(NSString *)city
+- (void)findWeatherByQuery:(NSString *)query
 {
     [WAERequestsHelper requestOpenWeatherMapApiWithPath:kWAEOpenWeatherMapApiRestWeatherPath
                                                     via:@"GET"
-                                         withParameters:@{kWAEOpenWeatherMapApiParamQuery: city}
+                                         withParameters:@{kWAEOpenWeatherMapApiParamQuery: query}
                                                andBlock:
      ^(BOOL succeeded, NSDictionary *result, NSError *error) {
          if (error) {
@@ -162,7 +168,7 @@
          NSString *twoWeeksBackTimestamp = [NSString stringWithFormat:@"%0.0f", [twoWeeksBack timeIntervalSince1970]];
          
          // get random image from city.
-         [WAERequestsHelper getRandomPhotoFromFlickrWithParameters:@{kWAEFlickrApiParamText: city,
+         [WAERequestsHelper getRandomPhotoFromFlickrWithParameters:@{kWAEFlickrApiParamText: query,
                                                                      kWAEFlickrApiParamLat: result[@"coord"][@"lat"],
                                                                      kWAEFlickrApiParamLon: result[@"coord"][@"lon"],
                                                                      kWAEFlickrApiParamPerPage: @10,

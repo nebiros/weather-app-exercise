@@ -48,5 +48,6 @@ NSString *const kWAEExerciseCitiesURL = @"https://dl.dropboxusercontent.com/u/35
 
 NSString *const kWAEStoryboardSegueRootToCities = @"RootToCitiesSegue";
 NSString *const kWAECollectionCellCity = @"CityCollectionViewCell";
+NSString *const kWAEStoryboardSegueCityTappedToRoot = @"CityTappedToRootSegue";
 
 @end

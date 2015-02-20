@@ -11,5 +11,7 @@
 
 @interface WAERootViewController : UIViewController <CLLocationManagerDelegate>
 
+@property (nonatomic) NSString *query;
+
 @end
 

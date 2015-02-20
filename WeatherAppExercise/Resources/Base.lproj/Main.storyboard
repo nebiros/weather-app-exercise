@@ -223,6 +223,7 @@
                                 <connections>
                                     <outlet property="cityImageView" destination="ZGi-qj-AWp" id="TUC-2k-VYc"/>
                                     <outlet property="cityNameLabel" destination="yIe-Ho-Vfv" id="RB3-IO-and"/>
+                                    <segue destination="LCu-2G-UQt" kind="show" identifier="CityTappedToRootSegue" id="KG2-9I-6vz"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -240,4 +241,7 @@
             <point key="canvasLocation" x="1847" y="-328"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="KG2-9I-6vz"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -17,8 +17,12 @@
 
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
 {
+    CGRect tmp = CGRectMake(0,
+                            0,
+                            CGRectGetWidth([UIScreen mainScreen].bounds),
+                            CGRectGetHeight(self.cityImageView.bounds));
     UICollectionViewLayoutAttributes *attrs = [layoutAttributes copy];
-    attrs.frame = self.cityImageView.bounds;
+    attrs.frame = tmp;
 #ifdef DEBUG
     NSLog(@"%s, NSStringFromCGRect(attrs.frame), %@", __PRETTY_FUNCTION__, NSStringFromCGRect(attrs.frame));
 #endif

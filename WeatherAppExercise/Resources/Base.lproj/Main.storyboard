@@ -157,14 +157,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="247"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZGi-qj-AWp">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ZGi-qj-AWp">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="247"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="320" id="fXU-mo-opL"/>
-                                                <constraint firstAttribute="height" constant="247" id="tRQ-AF-Yb6"/>
+                                                <constraint firstAttribute="width" constant="320" id="h7f-83-wOs"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="h7f-83-wOs"/>
+                                                </mask>
+                                            </variation>
                                         </imageView>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p93-9R-gkc">
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="p93-9R-gkc">
                                             <rect key="frame" x="0.0" y="119" width="320" height="128"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U20-C4-Kbq">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
@@ -207,11 +211,13 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="ZGi-qj-AWp" firstAttribute="trailing" secondItem="p93-9R-gkc" secondAttribute="trailing" id="6Ut-ng-ekg"/>
-                                    <constraint firstItem="ZGi-qj-AWp" firstAttribute="bottom" secondItem="p93-9R-gkc" secondAttribute="bottom" id="GHo-HD-Cpn"/>
-                                    <constraint firstItem="ZGi-qj-AWp" firstAttribute="leading" secondItem="FHI-Zb-HnP" secondAttribute="leading" id="POg-mE-Xbe"/>
-                                    <constraint firstItem="ZGi-qj-AWp" firstAttribute="leading" secondItem="p93-9R-gkc" secondAttribute="leading" id="XIi-TK-SBd"/>
-                                    <constraint firstItem="ZGi-qj-AWp" firstAttribute="top" secondItem="FHI-Zb-HnP" secondAttribute="top" id="Y2P-ZT-Psl"/>
+                                    <constraint firstItem="ZGi-qj-AWp" firstAttribute="bottom" secondItem="p93-9R-gkc" secondAttribute="bottom" id="9Ng-Bg-yOX"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZGi-qj-AWp" secondAttribute="trailing" id="EoH-3t-ve3"/>
+                                    <constraint firstItem="ZGi-qj-AWp" firstAttribute="trailing" secondItem="p93-9R-gkc" secondAttribute="trailing" id="YNt-Ay-50E"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZGi-qj-AWp" secondAttribute="bottom" id="bCf-44-0s8"/>
+                                    <constraint firstItem="ZGi-qj-AWp" firstAttribute="leading" secondItem="FHI-Zb-HnP" secondAttribute="leading" id="eRL-ne-Dya"/>
+                                    <constraint firstItem="ZGi-qj-AWp" firstAttribute="leading" secondItem="p93-9R-gkc" secondAttribute="leading" id="i0b-VY-sfF"/>
+                                    <constraint firstItem="ZGi-qj-AWp" firstAttribute="top" secondItem="FHI-Zb-HnP" secondAttribute="top" id="uz1-UV-Tht"/>
                                 </constraints>
                                 <size key="customSize" width="320" height="247"/>
                                 <connections>

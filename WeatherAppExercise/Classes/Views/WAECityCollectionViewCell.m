@@ -10,11 +10,19 @@
 
 @implementation WAECityCollectionViewCell
 
-- (void)prepareForReuse
+- (void)awakeFromNib
 {
-    [super prepareForReuse];
-    
-    self.cityImageView.image = nil;
+    [super awakeFromNib];
+}
+
+- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
+{
+    UICollectionViewLayoutAttributes *attrs = [layoutAttributes copy];
+    attrs.frame = self.cityImageView.bounds;
+#ifdef DEBUG
+    NSLog(@"%s, NSStringFromCGRect(attrs.frame), %@", __PRETTY_FUNCTION__, NSStringFromCGRect(attrs.frame));
+#endif
+    return attrs;
 }
 
 @end

@@ -14,6 +14,7 @@
 @interface WAECitiesCollectionViewController ()
 
 @property (nonatomic) NSArray *cities;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
@@ -24,6 +25,11 @@
     [super viewDidLoad];
     
     [self getCities];
+#ifdef DEBUG
+    NSLog(@"%s, NSStringFromCGRect([UIScreen mainScreen].bounds), %@", __PRETTY_FUNCTION__, NSStringFromCGRect([UIScreen mainScreen].bounds));
+#endif
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
+    layout.estimatedItemSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 250.f);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -59,6 +65,17 @@
     
     return cell;
 }
+
+#pragma mark - UICollectionViewDelegate
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+/*
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    
+}
+*/
 
 #pragma mark - Private
 

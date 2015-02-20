@@ -117,7 +117,14 @@
                             <constraint firstItem="Kpy-bh-uXK" firstAttribute="trailing" secondItem="OaZ-Ax-VwJ" secondAttribute="trailingMargin" constant="16" id="qex-dN-Hw9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tYw-Pa-xz5"/>
+                    <navigationItem key="navigationItem" id="tYw-Pa-xz5">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="8ez-IF-UJR"/>
+                        <barButtonItem key="rightBarButtonItem" title="Cities" id="0j6-So-4nB">
+                            <connections>
+                                <segue destination="o53-Xv-pPk" kind="show" identifier="RootToCitiesSegue" id="7Cf-Ay-rfj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cityImageView" destination="WuU-N2-qip" id="zzk-4B-g90"/>
                         <outlet property="cityLabel" destination="cYq-pe-D4Z" id="KXl-Tt-4yG"/>
@@ -127,6 +134,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y9Z-KO-EKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1015" y="275"/>
+        </scene>
+        <!--Cities Collection View Controller-->
+        <scene sceneID="jgK-vg-BXt">
+            <objects>
+                <collectionViewController id="o53-Xv-pPk" customClass="WAECitiesCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hYV-Om-kVi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="3O8-Vp-HaB">
+                            <size key="itemSize" width="600" height="247"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CityCollectionViewCell" id="FHI-Zb-HnP" customClass="WAECityCollectionViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="247"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZGi-qj-AWp">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="247"/>
+                                        </imageView>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p93-9R-gkc">
+                                            <rect key="frame" x="0.0" y="119" width="600" height="128"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U20-C4-Kbq">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q8d-eK-SE9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sfo-Os-EVh">
+                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Asteroide B612" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="yIe-Ho-Vfv">
+                                                                    <rect key="frame" x="8" y="8" width="584" height="77"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="250" constant="39" id="0Oj-8v-vDd"/>
+                                                                        <constraint firstAttribute="width" priority="500" constant="584" id="ujQ-x7-XF2"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="yIe-Ho-Vfv" firstAttribute="top" secondItem="sfo-Os-EVh" secondAttribute="top" constant="8" id="GK7-9y-JMb"/>
+                                                                <constraint firstItem="yIe-Ho-Vfv" firstAttribute="leading" secondItem="sfo-Os-EVh" secondAttribute="leading" constant="8" id="oS6-nC-wHI"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <vibrancyEffect>
+                                                            <blurEffect style="light"/>
+                                                        </vibrancyEffect>
+                                                    </visualEffectView>
+                                                </subviews>
+                                            </view>
+                                            <blurEffect style="light"/>
+                                        </visualEffectView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="cityImageView" destination="ZGi-qj-AWp" id="TUC-2k-VYc"/>
+                                    <outlet property="cityNameLabel" destination="yIe-Ho-Vfv" id="RB3-IO-and"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="o53-Xv-pPk" id="Uxq-wk-EdP"/>
+                            <outlet property="delegate" destination="o53-Xv-pPk" id="W1A-Ae-WOe"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AYv-lK-6P6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1847" y="-328"/>
         </scene>
     </scenes>
 </document>

@@ -37,4 +37,7 @@
 + (void)getRandomPhotoURLFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block;
 + (void)getRandomPhotoFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block;
 
++ (void)getExerciseCitiesWithBlock:(WAERequestCompletionResultBlock)block;
++ (void)getExerciseCityPhotoWithImageURL:(NSString *)imageURL andBlock:(WAERequestCompletionResultBlock)block;
+
 @end

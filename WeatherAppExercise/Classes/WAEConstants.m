@@ -40,4 +40,13 @@ NSString *const kWAEOpenWeatherMapApiParamQuery = @"q";
 NSString *const kWAEOpenWeatherMapApiParamApiKey = @"APPID";
 NSString *const kWAEOpenWeatherMapApiParamUnits = @"units";
 
+#pragma mark - Exercise
+
+NSString *const kWAEExerciseCitiesURL = @"https://dl.dropboxusercontent.com/u/3501/countries.json";
+
+#pragma mark - IDs
+
+NSString *const kWAEStoryboardSegueRootToCities = @"RootToCitiesSegue";
+NSString *const kWAECollectionCellCity = @"CityCollectionViewCell";
+
 @end

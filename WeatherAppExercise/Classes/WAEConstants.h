@@ -47,6 +47,15 @@ extern NSString *const kWAEOpenWeatherMapApiParamQuery;
 extern NSString *const kWAEOpenWeatherMapApiParamApiKey;
 extern NSString *const kWAEOpenWeatherMapApiParamUnits;
 
+#pragma mark - Exercise
+
+extern NSString *const kWAEExerciseCitiesURL;
+
+#pragma mark - IDs
+
+extern NSString *const kWAEStoryboardSegueRootToCities;
+extern NSString *const kWAECollectionCellCity;
+
 #pragma mark - Blocks
 
 typedef void (^WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)(NSURLRequest *request,

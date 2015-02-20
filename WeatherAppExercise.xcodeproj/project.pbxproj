@@ -22,6 +22,8 @@
 		04B19F421A96BFC4008572E5 /* NSString+JIMNSStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B19F411A96BFC4008572E5 /* NSString+JIMNSStringUtilities.m */; };
 		04B19F461A96CE80008572E5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B19F451A96CE80008572E5 /* libz.dylib */; };
 		04B19F481A978010008572E5 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B19F471A978010008572E5 /* Reveal.framework */; };
+		04B19F4B1A97964A008572E5 /* WAECitiesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B19F4A1A97964A008572E5 /* WAECitiesCollectionViewController.m */; };
+		04B19F4E1A979C4B008572E5 /* WAECityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B19F4D1A979C4B008572E5 /* WAECityCollectionViewCell.m */; };
 		04BFF8A41A92ADF300022B4A /* WAEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF8A31A92ADF300022B4A /* WAEConstants.m */; };
 		73472E488CF473937F3D6674 /* libPods-WeatherAppExercise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD5556B226745DC8712FC8E /* libPods-WeatherAppExercise.a */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,10 @@
 		04B19F411A96BFC4008572E5 /* NSString+JIMNSStringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JIMNSStringUtilities.m"; sourceTree = "<group>"; };
 		04B19F451A96CE80008572E5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		04B19F471A978010008572E5 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		04B19F491A97964A008572E5 /* WAECitiesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAECitiesCollectionViewController.h; sourceTree = "<group>"; };
+		04B19F4A1A97964A008572E5 /* WAECitiesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAECitiesCollectionViewController.m; sourceTree = "<group>"; };
+		04B19F4C1A979C4B008572E5 /* WAECityCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAECityCollectionViewCell.h; sourceTree = "<group>"; };
+		04B19F4D1A979C4B008572E5 /* WAECityCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAECityCollectionViewCell.m; sourceTree = "<group>"; };
 		04BFF8A21A92ADF300022B4A /* WAEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEConstants.h; sourceTree = "<group>"; };
 		04BFF8A31A92ADF300022B4A /* WAEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEConstants.m; sourceTree = "<group>"; };
 		1BD5556B226745DC8712FC8E /* libPods-WeatherAppExercise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherAppExercise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +148,8 @@
 			children = (
 				04691E721A928FA1001E84A4 /* WAERootViewController.h */,
 				04691E731A928FA1001E84A4 /* WAERootViewController.m */,
+				04B19F491A97964A008572E5 /* WAECitiesCollectionViewController.h */,
+				04B19F4A1A97964A008572E5 /* WAECitiesCollectionViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -165,6 +173,8 @@
 		04691E761A928FA1001E84A4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04B19F4C1A979C4B008572E5 /* WAECityCollectionViewCell.h */,
+				04B19F4D1A979C4B008572E5 /* WAECityCollectionViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -391,12 +401,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B14DB31A9441D300781B95 /* JIMEnvironments.m in Sources */,
+				04B19F4E1A979C4B008572E5 /* WAECityCollectionViewCell.m in Sources */,
 				04691E811A928FA1001E84A4 /* WAERootViewController.m in Sources */,
 				04691E831A928FA1001E84A4 /* main.m in Sources */,
 				04B14DAD1A94390500781B95 /* WAERequestsHelper.m in Sources */,
 				04691E801A928FA1001E84A4 /* WAEAppDelegate.m in Sources */,
 				04B19F421A96BFC4008572E5 /* NSString+JIMNSStringUtilities.m in Sources */,
 				04BFF8A41A92ADF300022B4A /* WAEConstants.m in Sources */,
+				04B19F4B1A97964A008572E5 /* WAECitiesCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

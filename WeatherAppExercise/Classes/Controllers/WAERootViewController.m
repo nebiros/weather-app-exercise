@@ -59,7 +59,7 @@
 //    self.weatherLabel.lineBreakMode = NSLineBreakByWordWrapping;
 //    self.weatherLabel.preferredMaxLayoutWidth = 200.f;
     
-    [self setupNavigation];
+//    [self setupNavigation];
     [self setCurrentLocationFromLocationManager];
 }
 

@@ -38,5 +38,6 @@ NSString *const kWAEOpenWeatherMapApiRestURL = @"http://api.openweathermap.org/d
 NSString *const kWAEOpenWeatherMapApiRestWeatherPath = @"/weather";
 NSString *const kWAEOpenWeatherMapApiParamQuery = @"q";
 NSString *const kWAEOpenWeatherMapApiParamApiKey = @"APPID";
+NSString *const kWAEOpenWeatherMapApiParamUnits = @"units";
 
 @end

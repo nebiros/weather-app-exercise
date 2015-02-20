@@ -68,6 +68,7 @@
     }
     
     [p setObject:[JIMEnvironments sharedInstance].environment[@"OpenWeatherMapApiKey"] forKey:kWAEOpenWeatherMapApiParamApiKey];
+    [p setObject:@"metric" forKey:kWAEOpenWeatherMapApiParamUnits];
     
     NSString *URLAsString = [NSString stringWithFormat:@"%@%@", kWAEOpenWeatherMapApiRestURL, path];
     NSURL *URL = [NSURL URLWithString:URLAsString];

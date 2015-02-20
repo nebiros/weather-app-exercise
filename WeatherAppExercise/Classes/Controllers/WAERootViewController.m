@@ -42,7 +42,22 @@
 {
     [super viewDidLoad];
     
-    [self addObserver:self forKeyPath:NSStringFromSelector(@selector(currentLocation)) options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self addObserver:self
+           forKeyPath:NSStringFromSelector(@selector(currentLocation))
+              options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+              context:nil];
+    [self addObserver:self
+           forKeyPath:NSStringFromSelector(@selector(currentLocationWeatherData))
+              options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+              context:nil];
+    
+//    self.cityLabel.numberOfLines = 0;
+//    self.cityLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    self.cityLabel.preferredMaxLayoutWidth = 200.f;
+    
+//    self.weatherLabel.numberOfLines = 0;
+//    self.weatherLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    self.weatherLabel.preferredMaxLayoutWidth = 200.f;
     
     [self setupNavigation];
     [self setCurrentLocationFromLocationManager];
@@ -57,6 +72,9 @@
 {
     if ([keyPath isEqualToString:NSStringFromSelector(@selector(currentLocation))]) {
         
+    } else if ([keyPath isEqualToString:NSStringFromSelector(@selector(currentLocationWeatherData))]) {
+        self.cityLabel.text = [NSString stringWithFormat:@"%@, %@", self.currentLocationWeatherData[@"name"], self.currentLocationWeatherData[@"sys"][@"country"]];
+        self.weatherLabel.text = [NSString stringWithFormat:@"%dºC", [self.currentLocationWeatherData[@"main"][@"temp"] intValue]];
     }
 }
 

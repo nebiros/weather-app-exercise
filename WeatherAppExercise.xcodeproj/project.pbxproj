@@ -24,6 +24,7 @@
 		04B19F481A978010008572E5 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B19F471A978010008572E5 /* Reveal.framework */; };
 		04B19F4B1A97964A008572E5 /* WAECitiesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B19F4A1A97964A008572E5 /* WAECitiesCollectionViewController.m */; };
 		04B19F4E1A979C4B008572E5 /* WAECityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B19F4D1A979C4B008572E5 /* WAECityCollectionViewCell.m */; };
+		04B19F501A980DAB008572E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04B19F4F1A980DAB008572E5 /* InfoPlist.strings */; };
 		04BFF8A41A92ADF300022B4A /* WAEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF8A31A92ADF300022B4A /* WAEConstants.m */; };
 		73472E488CF473937F3D6674 /* libPods-WeatherAppExercise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD5556B226745DC8712FC8E /* libPods-WeatherAppExercise.a */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		04B19F4A1A97964A008572E5 /* WAECitiesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAECitiesCollectionViewController.m; sourceTree = "<group>"; };
 		04B19F4C1A979C4B008572E5 /* WAECityCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAECityCollectionViewCell.h; sourceTree = "<group>"; };
 		04B19F4D1A979C4B008572E5 /* WAECityCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAECityCollectionViewCell.m; sourceTree = "<group>"; };
+		04B19F4F1A980DAB008572E5 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		04BFF8A21A92ADF300022B4A /* WAEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEConstants.h; sourceTree = "<group>"; };
 		04BFF8A31A92ADF300022B4A /* WAEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEConstants.m; sourceTree = "<group>"; };
 		1BD5556B226745DC8712FC8E /* libPods-WeatherAppExercise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherAppExercise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +197,7 @@
 				04691E7B1A928FA1001E84A4 /* LaunchScreen.xib */,
 				04691E7D1A928FA1001E84A4 /* Main.storyboard */,
 				04691E7F1A928FA1001E84A4 /* Images.xcassets */,
+				04B19F4F1A980DAB008572E5 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04691E851A928FA1001E84A4 /* Main.storyboard in Resources */,
+				04B19F501A980DAB008572E5 /* InfoPlist.strings in Resources */,
 				04691E861A928FA1001E84A4 /* Images.xcassets in Resources */,
 				04691E841A928FA1001E84A4 /* LaunchScreen.xib in Resources */,
 				04B14DB71A9442A200781B95 /* Environments.plist in Resources */,

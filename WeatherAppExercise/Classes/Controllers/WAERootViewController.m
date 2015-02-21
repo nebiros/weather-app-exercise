@@ -60,7 +60,15 @@
 //    self.weatherLabel.preferredMaxLayoutWidth = 200.f;
     
 //    [self setupNavigation];
-    [self setCurrentLocationFromLocationManager];
+    if (self.query && self.query.length > 0) {
+        [self findWeatherByQuery:self.query];
+    } else {
+#if TARGET_IPHONE_SIMULATOR
+        [self setCurrentLocationFromConfiguration];
+#else
+        [self setCurrentLocationFromLocationManager];
+#endif
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,23 +128,19 @@
 */
 #pragma mark - Location
 
+- (void)setCurrentLocationFromConfiguration
+{
+    [self findWeatherByQuery:[JIMEnvironments sharedInstance].environment[@"OpenWeatherMapDefaultQueryCity"]];
+}
+
 - (void)setCurrentLocationFromLocationManager
 {
-#ifndef TARGET_IPHONE_SIMULATOR
     // when iOS7…
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.locationManager requestWhenInUseAuthorization];
     }
     
     [self.locationManager startUpdatingLocation];
-#endif
-    
-    NSString *query = [JIMEnvironments sharedInstance].environment[@"OpenWeatherMapDefaultQueryCity"];
-    if (self.query && self.query.length > 0) {
-        query = self.query;
-    }
-    
-    [self findWeatherByQuery:query];
 }
 
 - (void)findWeatherByQuery:(NSString *)query
@@ -156,43 +160,27 @@
          }
          
          self.currentLocation = [[CLLocation alloc] initWithLatitude:[result[@"coord"][@"lat"] doubleValue] longitude:[result[@"coord"][@"lon"] doubleValue]];
-         self.currentLocationWeatherData = result;
+         [self setWeatherControlsWithResult:result andQuery:query];
+     }];
+}
+
+- (void)findWeatherByCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    [WAERequestsHelper requestOpenWeatherMapApiWithPath:kWAEOpenWeatherMapApiRestWeatherPath
+                                                    via:@"GET"
+                                         withParameters:@{kWAEOpenWeatherMapApiParamLat: @(coordinate.latitude), kWAEOpenWeatherMapApiParamLon: @(coordinate.longitude)}
+                                               andBlock:
+     ^(BOOL succeeded, NSDictionary *result, NSError *error) {
+         if (error) {
+             NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
+             NSLog(@"[ERROR] - %s: %@",
+                   __PRETTY_FUNCTION__,
+                   errorMessage);
+             
+             return;
+         }
          
-         NSCalendar *calendar = [NSCalendar currentCalendar];
-         NSDate *date = [NSDate date];
-         
-         NSDateComponents *components = [[NSDateComponents alloc] init];
-         [components setWeekOfYear:-2];
-         
-         NSDate *twoWeeksBack = [calendar dateByAddingComponents:components toDate:date options:0];
-         NSString *twoWeeksBackTimestamp = [NSString stringWithFormat:@"%0.0f", [twoWeeksBack timeIntervalSince1970]];
-         
-         // get random image from city.
-         [WAERequestsHelper getRandomPhotoFromFlickrWithParameters:@{kWAEFlickrApiParamText: query,
-                                                                     kWAEFlickrApiParamLat: result[@"coord"][@"lat"],
-                                                                     kWAEFlickrApiParamLon: result[@"coord"][@"lon"],
-                                                                     kWAEFlickrApiParamPerPage: @10,
-                                                                     kWAEFlickrApiParamMinUploadDate: twoWeeksBackTimestamp,
-                                                                     kWAEFlickrApiParamSort: @"date-posted-desc",
-                                                                     kWAEFlickrApiParamContentType: @4}
-                                                          andBlock:
-          ^(BOOL succeeded, UIImage *result, NSError *error) {
-              if (error) {
-                  NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
-                  NSLog(@"[ERROR] - %s: %@",
-                        __PRETTY_FUNCTION__,
-                        errorMessage);
-                  
-                  return;
-              }
-              
-              if (result) {
-                  self.cityImageView.contentMode = UIViewContentModeScaleAspectFill;
-                  self.cityImageView.image = result;
-                  
-//                  [self createCityImageVisualEffects];
-              }
-          }];
+         [self setWeatherControlsWithResult:result];
      }];
 }
 
@@ -240,7 +228,7 @@ NSInteger startUpdatingLocationTimes = 0;
     // test the age of the location measurement to determine if the measurement is cached
     // in most cases you will not want to rely on cached measurements
     NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
-    if (locationAge > 5.0) return;
+    if (locationAge > 2.0) return;
     
     // test that the horizontal accuracy does not indicate an invalid measurement
     if (newLocation.horizontalAccuracy < 0) return;
@@ -264,6 +252,56 @@ NSInteger startUpdatingLocationTimes = 0;
             [self.locationManager stopUpdatingLocation];
         }
     }
+    
+    [self findWeatherByCoordinate:self.currentLocation.coordinate];
+}
+
+#pragma mark - Private
+
+- (void)setWeatherControlsWithResult:(NSDictionary *)result
+{
+    [self setWeatherControlsWithResult:result andQuery:nil];
+}
+
+- (void)setWeatherControlsWithResult:(NSDictionary *)result andQuery:(NSString *)query
+{
+    self.currentLocationWeatherData = result;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *date = [NSDate date];
+    
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setWeekOfYear:-2];
+    
+    NSDate *twoWeeksBack = [calendar dateByAddingComponents:components toDate:date options:0];
+    NSString *twoWeeksBackTimestamp = [NSString stringWithFormat:@"%0.0f", [twoWeeksBack timeIntervalSince1970]];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:result[@"coord"][@"lat"] forKey:kWAEFlickrApiParamLat];
+    [params setObject:result[@"coord"][@"lon"] forKey:kWAEFlickrApiParamLon];
+    [params setObject:@10 forKey:kWAEFlickrApiParamPerPage];
+    [params setObject:twoWeeksBackTimestamp forKey:kWAEFlickrApiParamMinUploadDate];
+    [params setObject:@"date-posted-desc" forKey:kWAEFlickrApiParamSort];
+    [params setObject:@4 forKey:kWAEFlickrApiParamContentType];
+    if (query) [params setObject:query forKey:kWAEFlickrApiParamText];
+    
+    // get random image from city.
+    [WAERequestsHelper getRandomPhotoFromFlickrWithParameters:params andBlock:^(BOOL succeeded, UIImage *result, NSError *error) {
+        if (error) {
+            NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
+            NSLog(@"[ERROR] - %s: %@",
+                  __PRETTY_FUNCTION__,
+                  errorMessage);
+
+            return;
+        }
+
+        if (result) {
+            self.cityImageView.contentMode = UIViewContentModeScaleAspectFill;
+            self.cityImageView.image = result;
+//             [self createCityImageVisualEffects];
+        }
+    }];
 }
 
 @end

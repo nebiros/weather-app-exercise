@@ -46,6 +46,8 @@ extern NSString *const kWAEOpenWeatherMapApiRestWeatherPath;
 extern NSString *const kWAEOpenWeatherMapApiParamQuery;
 extern NSString *const kWAEOpenWeatherMapApiParamApiKey;
 extern NSString *const kWAEOpenWeatherMapApiParamUnits;
+extern NSString *const kWAEOpenWeatherMapApiParamLat;
+extern NSString *const kWAEOpenWeatherMapApiParamLon;
 
 #pragma mark - Exercise
 

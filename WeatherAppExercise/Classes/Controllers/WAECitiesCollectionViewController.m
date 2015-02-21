@@ -9,6 +9,7 @@
 #import "WAECitiesCollectionViewController.h"
 
 #import "WAERequestsHelper.h"
+#import "WAECitiesHelper.h"
 #import "WAECityCollectionViewCell.h"
 #import "WAERootViewController.h"
 
@@ -59,7 +60,7 @@
     NSDictionary *city = self.cities[indexPath.row];
     cell.cityNameLabel.text = [NSString stringWithFormat:@"%@, %@", city[@"city"], city[@"country"]];
     
-    [WAERequestsHelper getExerciseCityPhotoWithImageURL:city[@"imageURL"] andBlock:^(BOOL succeeded, UIImage *result, NSError *error) {
+    [WAECitiesHelper getExerciseCityPhotoWithImageURL:city[@"imageURL"] andBlock:^(BOOL succeeded, UIImage *result, NSError *error) {
         if (error) {
             NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
             NSLog(@"[ERROR] - %s: %@",
@@ -94,7 +95,7 @@
 
 - (void)getCities
 {
-    [WAERequestsHelper getExerciseCitiesWithBlock:^(BOOL succeeded, NSDictionary *result, NSError *error) {
+    [WAECitiesHelper getExerciseCitiesWithBlock:^(BOOL succeeded, NSDictionary *result, NSError *error) {
         if (error) {
             NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
             NSLog(@"[ERROR] - %s: %@",

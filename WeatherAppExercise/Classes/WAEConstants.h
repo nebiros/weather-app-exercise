@@ -15,6 +15,7 @@
 #pragma mark - Config
 
 extern NSInteger const kWAEConfigTimesToRetry;
+extern NSString *const kWAEConfigTemperature;
 
 #pragma mark - Flickr
 
@@ -48,6 +49,8 @@ extern NSString *const kWAEOpenWeatherMapApiParamApiKey;
 extern NSString *const kWAEOpenWeatherMapApiParamUnits;
 extern NSString *const kWAEOpenWeatherMapApiParamLat;
 extern NSString *const kWAEOpenWeatherMapApiParamLon;
+extern NSString *const kWAEOpenWeatherMapApiTemperatureUnitMetric;
+extern NSString *const kWAEOpenWeatherMapApiTemperatureUnitImperial;
 
 #pragma mark - Exercise
 
@@ -67,5 +70,12 @@ typedef void (^WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)(NSUR
                                                                             NSError *connectionError);
 typedef void (^WAERequestCompletionResultBlock)(BOOL succeeded, id result, NSError *error);
 typedef void (^WAERequestCompletionBlock)(BOOL succeeded, NSError *error);
+
+#pragma mark - Degrees types
+
+typedef NS_ENUM(NSInteger, WAETemperatureUnit) {
+    WAETemperatureUnitCelsius = 0,
+    WAETemperatureUnitFahrenheit
+};
 
 @end

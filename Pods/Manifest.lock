@@ -1,10 +1,13 @@
 PODS:
+  - FXKeychain (1.5.2)
   - RequestUtils (1.1)
 
 DEPENDENCIES:
+  - FXKeychain
   - RequestUtils
 
 SPEC CHECKSUMS:
+  FXKeychain: c97c352f1923809032339514ec4d6b0ed151bc3b
   RequestUtils: 3ea776d3ecc0370dd35cd90aef8319cdb741dae9
 
 COCOAPODS: 0.35.0

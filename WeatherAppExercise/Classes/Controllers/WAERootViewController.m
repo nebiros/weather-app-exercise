@@ -12,6 +12,8 @@
 
 #import "WAEConstants.h"
 #import "WAERequestsHelper.h"
+#import "WAEOpenWeatherMapHelper.h"
+#import "WAEFlickrHelper.h"
 
 @interface WAERootViewController ()
 
@@ -145,10 +147,10 @@
 
 - (void)findWeatherByQuery:(NSString *)query
 {
-    [WAERequestsHelper requestOpenWeatherMapApiWithPath:kWAEOpenWeatherMapApiRestWeatherPath
-                                                    via:@"GET"
-                                         withParameters:@{kWAEOpenWeatherMapApiParamQuery: query}
-                                               andBlock:
+    [WAEOpenWeatherMapHelper requestOpenWeatherMapApiWithPath:kWAEOpenWeatherMapApiRestWeatherPath
+                                                          via:@"GET"
+                                               withParameters:@{kWAEOpenWeatherMapApiParamQuery: query}
+                                                     andBlock:
      ^(BOOL succeeded, NSDictionary *result, NSError *error) {
          if (error) {
              NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
@@ -166,10 +168,11 @@
 
 - (void)findWeatherByCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    [WAERequestsHelper requestOpenWeatherMapApiWithPath:kWAEOpenWeatherMapApiRestWeatherPath
-                                                    via:@"GET"
-                                         withParameters:@{kWAEOpenWeatherMapApiParamLat: @(coordinate.latitude), kWAEOpenWeatherMapApiParamLon: @(coordinate.longitude)}
-                                               andBlock:
+    [WAEOpenWeatherMapHelper requestOpenWeatherMapApiWithPath:kWAEOpenWeatherMapApiRestWeatherPath
+                                                          via:@"GET"
+                                               withParameters:@{kWAEOpenWeatherMapApiParamLat: @(coordinate.latitude),
+                                                                kWAEOpenWeatherMapApiParamLon: @(coordinate.longitude)}
+                                                     andBlock:
      ^(BOOL succeeded, NSDictionary *result, NSError *error) {
          if (error) {
              NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
@@ -228,7 +231,7 @@ NSInteger startUpdatingLocationTimes = 0;
     // test the age of the location measurement to determine if the measurement is cached
     // in most cases you will not want to rely on cached measurements
     NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
-    if (locationAge > 2.0) return;
+    if (locationAge > 9.0) return;
     
     // test that the horizontal accuracy does not indicate an invalid measurement
     if (newLocation.horizontalAccuracy < 0) return;
@@ -286,7 +289,7 @@ NSInteger startUpdatingLocationTimes = 0;
     if (query) [params setObject:query forKey:kWAEFlickrApiParamText];
     
     // get random image from city.
-    [WAERequestsHelper getRandomPhotoFromFlickrWithParameters:params andBlock:^(BOOL succeeded, UIImage *result, NSError *error) {
+    [WAEFlickrHelper getRandomPhotoFromFlickrWithParameters:params andBlock:^(BOOL succeeded, UIImage *result, NSError *error) {
         if (error) {
             NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
             NSLog(@"[ERROR] - %s: %@",

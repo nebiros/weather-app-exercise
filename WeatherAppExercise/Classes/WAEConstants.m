@@ -13,6 +13,7 @@
 #pragma mark - Config
 
 NSInteger const kWAEConfigTimesToRetry = 3;
+NSString *const kWAEConfigTemperature = @"Temperature";
 
 #pragma mark - Flickr
 
@@ -41,6 +42,8 @@ NSString *const kWAEOpenWeatherMapApiParamApiKey = @"APPID";
 NSString *const kWAEOpenWeatherMapApiParamUnits = @"units";
 NSString *const kWAEOpenWeatherMapApiParamLat = @"lat";
 NSString *const kWAEOpenWeatherMapApiParamLon = @"lon";
+NSString *const kWAEOpenWeatherMapApiTemperatureUnitMetric = @"metric";
+NSString *const kWAEOpenWeatherMapApiTemperatureUnitImperial = @"imperial";
 
 #pragma mark - Exercise
 

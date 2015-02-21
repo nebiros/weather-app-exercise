@@ -26,6 +26,10 @@
 		04B19F4E1A979C4B008572E5 /* WAECityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B19F4D1A979C4B008572E5 /* WAECityCollectionViewCell.m */; };
 		04B19F501A980DAB008572E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04B19F4F1A980DAB008572E5 /* InfoPlist.strings */; };
 		04BFF8A41A92ADF300022B4A /* WAEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF8A31A92ADF300022B4A /* WAEConstants.m */; };
+		04CFA60E1A98FDAF00F0224E /* WAEFlickrHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA60D1A98FDAF00F0224E /* WAEFlickrHelper.m */; };
+		04CFA6111A98FDF800F0224E /* WAEOpenWeatherMapHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA6101A98FDF800F0224E /* WAEOpenWeatherMapHelper.m */; };
+		04CFA6171A98FF1200F0224E /* WAECitiesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA6161A98FF1200F0224E /* WAECitiesHelper.m */; };
+		04CFA61A1A99025A00F0224E /* WAESettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA6191A99025A00F0224E /* WAESettingsViewController.m */; };
 		73472E488CF473937F3D6674 /* libPods-WeatherAppExercise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD5556B226745DC8712FC8E /* libPods-WeatherAppExercise.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +75,14 @@
 		04B19F4F1A980DAB008572E5 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		04BFF8A21A92ADF300022B4A /* WAEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEConstants.h; sourceTree = "<group>"; };
 		04BFF8A31A92ADF300022B4A /* WAEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEConstants.m; sourceTree = "<group>"; };
+		04CFA60C1A98FDAF00F0224E /* WAEFlickrHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEFlickrHelper.h; sourceTree = "<group>"; };
+		04CFA60D1A98FDAF00F0224E /* WAEFlickrHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEFlickrHelper.m; sourceTree = "<group>"; };
+		04CFA60F1A98FDF800F0224E /* WAEOpenWeatherMapHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEOpenWeatherMapHelper.h; sourceTree = "<group>"; };
+		04CFA6101A98FDF800F0224E /* WAEOpenWeatherMapHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEOpenWeatherMapHelper.m; sourceTree = "<group>"; };
+		04CFA6151A98FF1200F0224E /* WAECitiesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAECitiesHelper.h; sourceTree = "<group>"; };
+		04CFA6161A98FF1200F0224E /* WAECitiesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAECitiesHelper.m; sourceTree = "<group>"; };
+		04CFA6181A99025A00F0224E /* WAESettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAESettingsViewController.h; sourceTree = "<group>"; };
+		04CFA6191A99025A00F0224E /* WAESettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAESettingsViewController.m; sourceTree = "<group>"; };
 		1BD5556B226745DC8712FC8E /* libPods-WeatherAppExercise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherAppExercise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D652935FB148A1EFABFABA9 /* Pods-WeatherAppExercise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppExercise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAppExercise/Pods-WeatherAppExercise.debug.xcconfig"; sourceTree = "<group>"; };
 		BAC2C91F3B2156603D870556 /* Pods-WeatherAppExercise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppExercise.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAppExercise/Pods-WeatherAppExercise.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +164,8 @@
 				04691E731A928FA1001E84A4 /* WAERootViewController.m */,
 				04B19F491A97964A008572E5 /* WAECitiesCollectionViewController.h */,
 				04B19F4A1A97964A008572E5 /* WAECitiesCollectionViewController.m */,
+				04CFA6181A99025A00F0224E /* WAESettingsViewController.h */,
+				04CFA6191A99025A00F0224E /* WAESettingsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -161,6 +175,12 @@
 			children = (
 				04B14DAB1A94390500781B95 /* WAERequestsHelper.h */,
 				04B14DAC1A94390500781B95 /* WAERequestsHelper.m */,
+				04CFA60C1A98FDAF00F0224E /* WAEFlickrHelper.h */,
+				04CFA60D1A98FDAF00F0224E /* WAEFlickrHelper.m */,
+				04CFA60F1A98FDF800F0224E /* WAEOpenWeatherMapHelper.h */,
+				04CFA6101A98FDF800F0224E /* WAEOpenWeatherMapHelper.m */,
+				04CFA6151A98FF1200F0224E /* WAECitiesHelper.h */,
+				04CFA6161A98FF1200F0224E /* WAECitiesHelper.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -404,15 +424,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CFA60E1A98FDAF00F0224E /* WAEFlickrHelper.m in Sources */,
+				04CFA6111A98FDF800F0224E /* WAEOpenWeatherMapHelper.m in Sources */,
 				04B14DB31A9441D300781B95 /* JIMEnvironments.m in Sources */,
 				04B19F4E1A979C4B008572E5 /* WAECityCollectionViewCell.m in Sources */,
 				04691E811A928FA1001E84A4 /* WAERootViewController.m in Sources */,
 				04691E831A928FA1001E84A4 /* main.m in Sources */,
+				04CFA6171A98FF1200F0224E /* WAECitiesHelper.m in Sources */,
 				04B14DAD1A94390500781B95 /* WAERequestsHelper.m in Sources */,
 				04691E801A928FA1001E84A4 /* WAEAppDelegate.m in Sources */,
 				04B19F421A96BFC4008572E5 /* NSString+JIMNSStringUtilities.m in Sources */,
 				04BFF8A41A92ADF300022B4A /* WAEConstants.m in Sources */,
 				04B19F4B1A97964A008572E5 /* WAECitiesCollectionViewController.m in Sources */,
+				04CFA61A1A99025A00F0224E /* WAESettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

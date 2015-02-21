@@ -17,27 +17,9 @@
             via:(NSString *)via
  withParameters:(NSDictionary *)params
        andBlock:(WAENSURLConnectionAsynchronousRequestCompletionHandlerBlock)block;
-
-+ (void)requestFlickrApiWithFlickrMethod:(NSString *)flickrMethod
-                                     via:(NSString *)via
-                          withParameters:(NSDictionary *)params
-                                andBlock:(WAERequestCompletionResultBlock)block;
-
-+ (void)requestOpenWeatherMapApiWithPath:(NSString *)path
-                                     via:(NSString *)via
-                          withParameters:(NSDictionary *)params
-                                andBlock:(WAERequestCompletionResultBlock)block;
-
 + (void)requestAndSerializeResult:(NSURL *)URL
                               via:(NSString *)via
                    withParameters:(NSDictionary *)params
                          andBlock:(WAERequestCompletionResultBlock)block;
-
-+ (void)getRandomPhotoDataFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block;
-+ (void)getRandomPhotoURLFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block;
-+ (void)getRandomPhotoFromFlickrWithParameters:(NSDictionary *)params andBlock:(WAERequestCompletionResultBlock)block;
-
-+ (void)getExerciseCitiesWithBlock:(WAERequestCompletionResultBlock)block;
-+ (void)getExerciseCityPhotoWithImageURL:(NSString *)imageURL andBlock:(WAERequestCompletionResultBlock)block;
 
 @end

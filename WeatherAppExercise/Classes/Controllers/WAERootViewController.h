@@ -9,7 +9,9 @@
 @import UIKit;
 @import MapKit;
 
-@interface WAERootViewController : UIViewController <CLLocationManagerDelegate>
+#import "WAESettingsViewController.h"
+
+@interface WAERootViewController : UIViewController <CLLocationManagerDelegate, UIViewControllerTransitioningDelegate, WAESettingsViewControllerDelegate>
 
 @property (nonatomic) NSString *query;
 

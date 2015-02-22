@@ -67,7 +67,7 @@
     [self.celsiusDegreesLabel addGestureRecognizer:tapCelsius];
     
     self.fahrenheitDegreesLabel.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapFahrenheit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(celsiusDegreesLabelTapped:)];
+    UITapGestureRecognizer *tapFahrenheit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fahrenheitDegreesLabelTapped:)];
     tapFahrenheit.delegate = self;
     [self.fahrenheitDegreesLabel addGestureRecognizer:tapFahrenheit];
     
@@ -88,36 +88,10 @@
             NSArray *cities = (NSArray *) result[@"cities"];
             
             NSDictionary *randomCityC = cities[arc4random_uniform(cities.count)];
-            [WAECitiesHelper getExerciseCityPhotoWithImageURL:randomCityC[@"imageURL"] andBlock:^(BOOL succeeded, UIImage *result, NSError *error) {
-                if (error) {
-                    NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
-                    NSLog(@"[ERROR] - %s: %@",
-                          __PRETTY_FUNCTION__,
-                          errorMessage);
-                    
-                    return;
-                }
-                
-                if (result) {
-                    self.celsiusDegreesImageView.image = result;
-                }
-            }];
+            [self setExerciseCityPhotoWithImageURL:randomCityC[@"imageURL"] andImageView:self.celsiusDegreesImageView];
             
             NSDictionary *randomCityF = cities[arc4random_uniform(cities.count)];
-            [WAECitiesHelper getExerciseCityPhotoWithImageURL:randomCityF[@"imageURL"] andBlock:^(BOOL succeeded, UIImage *result, NSError *error) {
-                if (error) {
-                    NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
-                    NSLog(@"[ERROR] - %s: %@",
-                          __PRETTY_FUNCTION__,
-                          errorMessage);
-                    
-                    return;
-                }
-                
-                if (result) {
-                    self.fahrenheitDegreesImageView.image = result;
-                }
-            }];
+            [self setExerciseCityPhotoWithImageURL:randomCityF[@"imageURL"] andImageView:self.fahrenheitDegreesImageView];
         }
     }];
 }
@@ -127,11 +101,21 @@
 - (void)celsiusDegreesLabelTapped:(id)sender
 {
     [FXKeychain defaultKeychain][kWAEConfigTemperature] = @(WAETemperatureUnitCelsius);
+    if ([self.delegate respondsToSelector:@selector(settingsViewController:refreshAfterSettingsSaved:)]) {
+        [self.delegate settingsViewController:self refreshAfterSettingsSaved:YES];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)fahrenheitDegreesLabelTapped:(id)sender
 {
     [FXKeychain defaultKeychain][kWAEConfigTemperature] = @(WAETemperatureUnitFahrenheit);
+    if ([self.delegate respondsToSelector:@selector(settingsViewController:refreshAfterSettingsSaved:)]) {
+        [self.delegate settingsViewController:self refreshAfterSettingsSaved:YES];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
@@ -143,5 +127,25 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Private
+
+- (void)setExerciseCityPhotoWithImageURL:(NSString *)imageURL andImageView:(UIImageView *)imageView
+{
+    [WAECitiesHelper getExerciseCityPhotoWithImageURL:imageURL andBlock:^(BOOL succeeded, UIImage *result, NSError *error) {
+        if (error) {
+            NSString *errorMessage = [NSString stringWithFormat:@"\n%@\n%@", [error localizedDescription], error.userInfo];
+            NSLog(@"[ERROR] - %s: %@",
+                  __PRETTY_FUNCTION__,
+                  errorMessage);
+            
+            return;
+        }
+        
+        if (result) {
+            imageView.image = result;
+        }
+    }];
+}
 
 @end

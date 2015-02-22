@@ -61,6 +61,7 @@ extern NSString *const kWAEExerciseCitiesURL;
 extern NSString *const kWAEStoryboardSegueRootToCities;
 extern NSString *const kWAECollectionCellCity;
 extern NSString *const kWAEStoryboardSegueCityTappedToRoot;
+extern NSString *const kWAEStoryboardSegueRootToSettings;
 
 #pragma mark - Blocks
 

@@ -8,6 +8,16 @@
 
 @import UIKit;
 
+@class WAESettingsViewController;
+
+@protocol WAESettingsViewControllerDelegate <NSObject>
+
+- (void)settingsViewController:(WAESettingsViewController *)settingsVC refreshAfterSettingsSaved:(BOOL)refresh;
+
+@end
+
 @interface WAESettingsViewController : UIViewController <UIGestureRecognizerDelegate>
+
+@property (weak, nonatomic) NSObject <WAESettingsViewControllerDelegate> *delegate;
 
 @end

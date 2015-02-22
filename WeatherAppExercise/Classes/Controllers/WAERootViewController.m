@@ -9,11 +9,12 @@
 #import "WAERootViewController.h"
 
 #import "JIMEnvironments.h"
+#import <FXKeychain/FXKeychain.h>
 
 #import "WAEConstants.h"
-#import "WAERequestsHelper.h"
 #import "WAEOpenWeatherMapHelper.h"
 #import "WAEFlickrHelper.h"
+#import "WAEBouncyTransition.h"
 
 @interface WAERootViewController ()
 
@@ -84,7 +85,16 @@
         [self findWeatherByQuery:self.query];
     } else if ([keyPath isEqualToString:NSStringFromSelector(@selector(currentLocationWeatherData))]) {
         self.cityLabel.text = [NSString stringWithFormat:@"%@, %@", self.currentLocationWeatherData[@"name"], self.currentLocationWeatherData[@"sys"][@"country"]];
-        self.weatherLabel.text = [NSString stringWithFormat:@"%dºC", [self.currentLocationWeatherData[@"main"][@"temp"] intValue]];
+        
+        NSString *t = nil;
+        WAETemperatureUnit temperature = [[FXKeychain defaultKeychain][kWAEConfigTemperature] integerValue];
+        if (temperature == WAETemperatureUnitFahrenheit) {
+            t = [NSString stringWithFormat:@"%dºF", [self.currentLocationWeatherData[@"main"][@"temp"] intValue]];
+        } else {
+            t = [NSString stringWithFormat:@"%dºC", [self.currentLocationWeatherData[@"main"][@"temp"] intValue]];
+        }
+        
+        self.weatherLabel.text = t;
     }
 }
 /*
@@ -95,6 +105,18 @@
     self.blurredBackgroundImageView.frame = self.view.bounds;
 }
 */
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kWAEStoryboardSegueRootToSettings]) {
+        WAESettingsViewController *settingsVC = (WAESettingsViewController *) segue.destinationViewController;
+        settingsVC.delegate = self;
+        // transitions stuff.
+        settingsVC.modalPresentationStyle = UIModalPresentationCustom;
+        settingsVC.transitioningDelegate = self;
+    }
+}
+
 #pragma mark - UI
 /*
 - (void)setupNavigation
@@ -305,6 +327,25 @@ NSInteger startUpdatingLocationTimes = 0;
 //             [self createCityImageVisualEffects];
         }
     }];
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source
+{
+    WAEBouncyTransition *transition = [[WAEBouncyTransition alloc] init];
+    return transition;
+}
+
+#pragma mark - WAESettingsViewControllerDelegate
+
+- (void)settingsViewController:(WAESettingsViewController *)settingsVC refreshAfterSettingsSaved:(BOOL)refresh
+{
+    if (refresh) {
+        self.query = [NSString stringWithFormat:@"%@, %@", self.currentLocationWeatherData[@"name"], self.currentLocationWeatherData[@"sys"][@"country"]];
+    }
 }
 
 @end

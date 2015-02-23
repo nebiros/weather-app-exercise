@@ -45,6 +45,41 @@
     [WAEFlickrHelper getRandomPhotoDataFromFlickrWithParameters:@{kWAEFlickrApiParamText: @"new york, usa"} andBlock:^(BOOL succeeded, id result, NSError *error) {
         XCTAssertNil(error, "'error' should be nil");
         XCTAssertTrue(succeeded, @"'succeeded' must be YES");
+        XCTAssertEqual([result allKeys].count, 9, @"should be nine keys");
+        
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.f handler:^(NSError *error) {
+        XCTAssertNil(error, "'error' should be nil");
+    }];
+}
+
+- (void)testGetRandomPhotoURLFromFlickrWithParameters
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"resultReady"];
+    
+    [WAEFlickrHelper getRandomPhotoURLFromFlickrWithParameters:@{kWAEFlickrApiParamText: @"new york, usa"} andBlock:^(BOOL succeeded, id result, NSError *error) {
+        XCTAssertNil(error, "'error' should be nil");
+        XCTAssertTrue(succeeded, @"'succeeded' must be YES");
+        XCTAssertEqualObjects([result class], [NSURL class], @"'result' should be a URL class");
+        
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.f handler:^(NSError *error) {
+        XCTAssertNil(error, "'error' should be nil");
+    }];
+}
+
+- (void)testGetRandomPhotoFromFlickrWithParameters
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"resultReady"];
+    
+    [WAEFlickrHelper getRandomPhotoFromFlickrWithParameters:@{kWAEFlickrApiParamText: @"new york, usa"} andBlock:^(BOOL succeeded, id result, NSError *error) {
+        XCTAssertNil(error, "'error' should be nil");
+        XCTAssertTrue(succeeded, @"'succeeded' must be YES");
+        XCTAssertEqualObjects([result class], [UIImage class], @"'result' should be a UIImage class");
         
         [expectation fulfill];
     }];

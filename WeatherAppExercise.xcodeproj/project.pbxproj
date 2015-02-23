@@ -27,6 +27,7 @@
 		04B19F501A980DAB008572E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04B19F4F1A980DAB008572E5 /* InfoPlist.strings */; };
 		04BF7E5B1A9BBFC40088707F /* WAERequestsHelperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF7E5A1A9BBFC40088707F /* WAERequestsHelperTest.m */; };
 		04BF7E5D1A9BCE8E0088707F /* WAEFlickrHelperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF7E5C1A9BCE8E0088707F /* WAEFlickrHelperTest.m */; };
+		04BF7E5F1A9BE2C60088707F /* WAEOpenWeatherMapHelperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF7E5E1A9BE2C60088707F /* WAEOpenWeatherMapHelperTest.m */; };
 		04BFF8A41A92ADF300022B4A /* WAEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF8A31A92ADF300022B4A /* WAEConstants.m */; };
 		04CFA60E1A98FDAF00F0224E /* WAEFlickrHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA60D1A98FDAF00F0224E /* WAEFlickrHelper.m */; };
 		04CFA6111A98FDF800F0224E /* WAEOpenWeatherMapHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA6101A98FDF800F0224E /* WAEOpenWeatherMapHelper.m */; };
@@ -78,6 +79,7 @@
 		04B19F4F1A980DAB008572E5 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		04BF7E5A1A9BBFC40088707F /* WAERequestsHelperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAERequestsHelperTest.m; sourceTree = "<group>"; };
 		04BF7E5C1A9BCE8E0088707F /* WAEFlickrHelperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEFlickrHelperTest.m; sourceTree = "<group>"; };
+		04BF7E5E1A9BE2C60088707F /* WAEOpenWeatherMapHelperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEOpenWeatherMapHelperTest.m; sourceTree = "<group>"; };
 		04BFF8A21A92ADF300022B4A /* WAEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEConstants.h; sourceTree = "<group>"; };
 		04BFF8A31A92ADF300022B4A /* WAEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEConstants.m; sourceTree = "<group>"; };
 		04CFA60C1A98FDAF00F0224E /* WAEFlickrHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEFlickrHelper.h; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				04691E881A928FB5001E84A4 /* Info.plist */,
 				04BF7E5A1A9BBFC40088707F /* WAERequestsHelperTest.m */,
 				04BF7E5C1A9BCE8E0088707F /* WAEFlickrHelperTest.m */,
+				04BF7E5E1A9BE2C60088707F /* WAEOpenWeatherMapHelperTest.m */,
 			);
 			path = WeatherAppExerciseTests;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04BF7E5F1A9BE2C60088707F /* WAEOpenWeatherMapHelperTest.m in Sources */,
 				04BF7E5D1A9BCE8E0088707F /* WAEFlickrHelperTest.m in Sources */,
 				04BF7E5B1A9BBFC40088707F /* WAERequestsHelperTest.m in Sources */,
 			);

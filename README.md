@@ -13,6 +13,7 @@ A small weather app in `ObjC`, iOS8+, is an exercise to work with some different
 * Auto Layout.
 * CocoaPods.
 * Environment configurations.
+* Unit Tests.
 
 ## Setup
 First, install some utilities that I made, they are added as a `git submodules`.

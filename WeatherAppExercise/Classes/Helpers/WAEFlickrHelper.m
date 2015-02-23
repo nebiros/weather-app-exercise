@@ -9,6 +9,7 @@
 #import "WAEFlickrHelper.h"
 
 #import "JIMEnvironments.h"
+#import "NSString+JIMNSStringUtilities.h"
 
 #import "WAERequestsHelper.h"
 

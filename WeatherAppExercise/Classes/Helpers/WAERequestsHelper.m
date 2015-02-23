@@ -10,7 +10,6 @@
 
 #import <RequestUtils/RequestUtils.h>
 #import "JIMEnvironments.h"
-#import "NSString+JIMNSStringUtilities.h"
 
 @implementation WAERequestsHelper
 
